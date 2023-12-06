@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\NugetManagementReport.Domain\NugetManagementReport.Domain.csproj" />
+    <ProjectReference Include="..\NugetManagementReport.Infrastructure\NugetManagementReport.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
