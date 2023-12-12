@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<IsPackable>false</IsPackable>
@@ -6,7 +6,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="FluentAssertions" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="Moq" />
 		<PackageReference Include="xunit" />
 		<PackageReference Include="xunit.runner.visualstudio">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,6 +24,7 @@
 		<ProjectReference Include="..\NugetManagementReport.Application\NugetManagementReport.Application.csproj" />
 		<ProjectReference Include="..\NugetManagementReport.Domain\NugetManagementReport.Domain.csproj" />
 		<ProjectReference Include="..\NugetManagementReport.Infrastructure\NugetManagementReport.Infrastructure.csproj" />
+		<ProjectReference Include="..\NugetManagementReport.Tool\NugetManagementReport.Tool.csproj" />
 	</ItemGroup>
 
 </Project>

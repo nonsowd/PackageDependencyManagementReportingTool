@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NugetManagementReport.Tool": {
+      "commandName": "Project",
+      "commandLineArgs": "foo.txt"
+    }
+  }
+}
