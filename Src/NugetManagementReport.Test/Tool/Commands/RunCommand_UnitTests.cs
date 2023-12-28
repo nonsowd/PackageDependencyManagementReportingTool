@@ -1,7 +1,7 @@
 using NugetManagementReport.Application;
 using NugetManagementReport.Tool.Commands;
 
-namespace NugetManagementReport.Test.UI;
+namespace NugetManagementReport.Test.Tool.Commands;
 
 public class RunCommand_Excute
 {
