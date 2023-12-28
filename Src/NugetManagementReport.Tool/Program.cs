@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
+using NugetManagementReport.Infrastructure;
 using NugetManagementReport.Tool.Commands;
+using NugetManagementReport.Tool.Presentation;
 using NugetManagementReport.Tool.TypeResolution;
 using Spectre.Console.Cli;
 
@@ -9,6 +11,7 @@ using Spectre.Console.Cli;
 
 var services = new ServiceCollection();
 services.AddCommandHandlers();
+services.AddTransient<IConsoleWriter, CliConsole>();
 
 // Create a type registrar and register any dependencies.
 // A type registrar is an adapter for a DI framework.
