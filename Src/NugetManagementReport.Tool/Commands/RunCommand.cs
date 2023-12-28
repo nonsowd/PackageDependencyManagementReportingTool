@@ -4,21 +4,16 @@ using Spectre.Console.Cli;
 
 namespace NugetManagementReport.Tool.Commands;
 
-public sealed class RunCommand : Command<RunCommand.Settings>
+public sealed class RunCommand(IRunCommandHandler runCommandHandler) : Command<RunCommand.Settings>
 {
-    private IRunCommandHandler _runCommandHandler;
-
-    public RunCommand(IRunCommandHandler runCommandHandler)
-    {
-        _runCommandHandler = runCommandHandler;
-    }
+    private readonly IRunCommandHandler _runCommandHandler = runCommandHandler;
 
     public sealed class Settings : CommandSettings
     {
         [CommandOption("-f|--file <FILEPATH>")]
         [Description("The person or thing to greet.")]
         [DefaultValue("World")]
-        public string FilePath { get; set; }
+        public string FilePath { get; set; } = string.Empty;  
     }
 
     public override int Execute(CommandContext context, Settings settings)

@@ -11,7 +11,7 @@ public sealed class DefaultCommand : Command<DefaultCommand.Settings>
         [CommandOption("-n|--name <NAME>")]
         [Description("The person or thing to greet.")]
         [DefaultValue("World")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 
     public override int Execute(CommandContext context, Settings settings)
