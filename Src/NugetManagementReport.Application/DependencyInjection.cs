@@ -1,5 +1,3 @@
-
-
 using NugetManagementReport.Application;
 
 namespace Microsoft.Extensions.DependencyInjection;
