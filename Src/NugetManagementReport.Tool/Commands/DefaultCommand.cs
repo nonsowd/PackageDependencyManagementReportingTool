@@ -16,7 +16,8 @@ public sealed class DefaultCommand : Command<DefaultCommand.Settings>
 
     public override int Execute(CommandContext context, Settings settings)
     {
-        AnsiConsole.WriteLine($"Hello {settings.Name}!");
+        var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        AnsiConsole.WriteLine($"Hello {settings.Name}! - version: {version}");
         return 0;
     }
 }
