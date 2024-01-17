@@ -35,9 +35,12 @@ app.Configure(cfg =>
     cfg.AddCommand<RunCommand>("run");
     cfg.AddCommand<AnalyseCommand>("analyse").WithAlias("analyse-dependencies")
         .WithDescription("Runs security vulnerability and outdated check on nuget packages");
-        //.WithExample(new[] { "size", "c:\\windows", "--pattern", "*.dll" });
+    //.WithExample(new[] { "size", "c:\\windows", "--pattern", "*.dll" });
+    cfg.AddCommand<PrintReportCommand>("report").WithAlias("print-report")
+        .WithDescription("Produces a report of NuGet packages with security vulnerabilities or that are outdated.");
+    cfg.AddCommand<ProjectPlanCommand>("project").WithAlias("project-plan")
+        .WithDescription("Produces a csv file of work actions to resolve NuGet packages with security vulnerabilities or that are outdated.");
 });
 return app.Run(args);
-
 
 
