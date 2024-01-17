@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
         <PackAsTool>true</PackAsTool>
-        <ToolCommandName>NugetReport</ToolCommandName>
+        <ToolCommandName>NuGetReport</ToolCommandName>
         <PackageOutputPath>./nupkg</PackageOutputPath>
 	</PropertyGroup>
 

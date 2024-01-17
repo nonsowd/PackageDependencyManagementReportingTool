@@ -1,4 +1,3 @@
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using NugetManagementReport.Infrastructure;
 using NugetManagementReport.Tool.Commands;
@@ -23,18 +22,22 @@ var registrar = new CliTypeRegistrar(services);
 // Create a new command app with the registrar
 // and run it with the provided arguments.
 var app = new CommandApp<DefaultCommand>(registrar);
+
 app.Configure(cfg =>
 {
+    cfg.SetApplicationName("NuGetReport"); // Dotnet Global tool name here to get help to command match.
+    cfg.CaseSensitivity(CaseSensitivity.None);
+    cfg.SetHelpProvider(new CustomHelpProvider(cfg.Settings));
 #if DEBUG
     cfg.PropagateExceptions();
     cfg.ValidateExamples();
 #endif
-    cfg.AddCommand<RunCommand>("Run");
-    //cfg.AddCommand<AnalyseCommand>("Analyse")
-    //    .WithAlias("analyse-dependencies")
-    //    .WithDescription("Runs security vulnerablity and outdated check on nuget packages");
-       //.WithExample(new[] { "size", "c:\\windows", "--pattern", "*.dll" });
+    cfg.AddCommand<RunCommand>("run");
+    cfg.AddCommand<AnalyseCommand>("analyse").WithAlias("analyse-dependencies")
+        .WithDescription("Runs security vulnerability and outdated check on nuget packages");
+        //.WithExample(new[] { "size", "c:\\windows", "--pattern", "*.dll" });
 });
 return app.Run(args);
+
 
 
