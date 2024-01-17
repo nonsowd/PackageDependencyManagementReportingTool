@@ -5,6 +5,8 @@ using NugetManagementReport.Tool.Presentation;
 using NugetManagementReport.Tool.TypeResolution;
 using Spectre.Console.Cli;
 
+//[assembly: AssemblyVersion("1.0.*")]
+
 // https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create
 // https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-use
 // https://spectreconsole.net/cli/introduction
@@ -20,5 +22,19 @@ var registrar = new CliTypeRegistrar(services);
 // Create a new command app with the registrar
 // and run it with the provided arguments.
 var app = new CommandApp<DefaultCommand>(registrar);
-app.Configure(cfg => cfg.AddCommand<RunCommand>("Run"));
+
+app.Configure(cfg =>
+{
+#if DEBUG
+    cfg.PropagateExceptions();
+    cfg.ValidateExamples();
+#endif
+    cfg.AddCommand<RunCommand>("run");
+    cfg.AddCommand<PrintReportCommand>("report").WithAlias("print-report")
+        .WithDescription("Produces a report of NuGet packages with security vulnerabilities or that are outdated.");
+    cfg.AddCommand<ProjectPlanCommand>("project").WithAlias("project-plan")
+        .WithDescription("Produces a csv file of work actions to resolve NuGet packages with security vulnerabilities or that are outdated.");
+});
 return app.Run(args);
+
+
