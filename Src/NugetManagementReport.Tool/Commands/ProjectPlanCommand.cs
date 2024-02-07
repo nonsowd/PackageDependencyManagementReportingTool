@@ -4,9 +4,9 @@ using Spectre.Console.Cli;
 
 namespace NugetManagementReport.Tool.Commands;
 
-public sealed class ProjectPlanCommand(IRunCommandHandler runCommandHandler) : Command<ProjectPlanCommand.Settings>
+public sealed class ProjectPlanCommand(IProjectPlanCommandHandler projectPlanCommandHandler) : Command<ProjectPlanCommand.Settings>
 {
-    private readonly IRunCommandHandler _runCommandHandler = runCommandHandler;
+    private readonly IProjectPlanCommandHandler _projectPlanCommandHandler = projectPlanCommandHandler;
 
     public sealed class Settings : CommandSettings
     {
@@ -18,7 +18,7 @@ public sealed class ProjectPlanCommand(IRunCommandHandler runCommandHandler) : C
 
     public override int Execute(CommandContext context, Settings settings)
     {
-        _runCommandHandler.Handle(settings.FilePath);
+        _projectPlanCommandHandler.Handle(settings.FilePath);
         return 0;
     }
 }
