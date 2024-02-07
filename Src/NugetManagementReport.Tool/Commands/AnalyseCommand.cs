@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NugetManagementReport.Application;
 using Spectre.Console.Cli;
 
 namespace NugetManagementReport.Tool.Commands;
 
-public sealed class AnalyseCommand(IRunCommandHandler runCommandHandler) : Command<AnalyseCommand.Settings>
+public sealed class AnalyseCommand(IAnalyseCommandHandler analyseCommandHandler) : Command<AnalyseCommand.Settings>
 {
-    private readonly IRunCommandHandler _runCommandHandler = runCommandHandler;
+    private readonly IAnalyseCommandHandler _analyseCommandHandler = analyseCommandHandler;
 
     public sealed class Settings : CommandSettings
     {
@@ -23,7 +18,7 @@ public sealed class AnalyseCommand(IRunCommandHandler runCommandHandler) : Comma
 
     public override int Execute(CommandContext context, Settings settings)
     {
-        _runCommandHandler.Handle(settings.FilePath);
+        _analyseCommandHandler.Handle(settings.FilePath);
         return 0;
     }
 }
