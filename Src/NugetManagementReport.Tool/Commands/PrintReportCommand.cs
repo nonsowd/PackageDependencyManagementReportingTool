@@ -1,12 +1,12 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using NugetManagementReport.Application;
 using Spectre.Console.Cli;
 
 namespace NugetManagementReport.Tool.Commands;
 
-public sealed class PrintReportCommand(IRunCommandHandler runCommandHandler) : Command<PrintReportCommand.Settings>
+public sealed class PrintReportCommand(IPrintReportCommandHandler printReportCommandHandler) : Command<PrintReportCommand.Settings>
 {
-    private readonly IRunCommandHandler _runCommandHandler = runCommandHandler;
+    private readonly IPrintReportCommandHandler _printReportCommandHandler = printReportCommandHandler;
 
     public sealed class Settings : CommandSettings
     {
@@ -18,7 +18,7 @@ public sealed class PrintReportCommand(IRunCommandHandler runCommandHandler) : C
 
     public override int Execute(CommandContext context, Settings settings)
     {
-        _runCommandHandler.Handle(settings.FilePath);
+        _printReportCommandHandler.Handle(settings.FilePath);
         return 0;
     }
 }
