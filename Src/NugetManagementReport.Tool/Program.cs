@@ -13,6 +13,7 @@ using Spectre.Console.Cli;
 
 var services = new ServiceCollection();
 services.AddCommandHandlers();
+services.AddDomain();
 services.AddTransient<IConsoleWriter, CliConsole>();
 
 // Create a type registrar and register any dependencies.
