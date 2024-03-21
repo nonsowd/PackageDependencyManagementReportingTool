@@ -4,18 +4,19 @@ using NugetManagementReport.Infrastructure;
 namespace NugetManagementReport.Application;
 public interface IPackageDependencyParsingService
 {
-    List<NugetPackage> ReadNugetPackageInfo (string path);
+    Task<List<NugetPackage>> ReadNugetPackageInfo (string path, CancellationToken cancellationToken);
 }
 internal class PackageDependencyParsingService(IFileProvider fileProvider) : IPackageDependencyParsingService
 {
     private readonly IFileProvider _fileProvider = fileProvider;
 
-    public List<NugetPackage> ReadNugetPackageInfo(string path)
+    public async Task<List<NugetPackage>> ReadNugetPackageInfo(string path, CancellationToken cancellationToken)
     {
-        var line = _fileProvider.ReadAllLines(path);    
+        var line = await _fileProvider.ReadAllLinesAsync(path, cancellationToken);
+
+        if (cancellationToken.IsCancellationRequested)
+            return [];
+        
         throw new NotImplementedException();
     }
 }
-
-
-
