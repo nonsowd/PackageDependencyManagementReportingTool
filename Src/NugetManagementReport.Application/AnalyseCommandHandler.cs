@@ -1,3 +1,4 @@
+using System.Text.Json;
 using NugetManagementReport.Domain;
 using NugetManagementReport.Infrastructure;
 
@@ -11,11 +12,19 @@ internal class AnalyseCommandHandler : IAnalyseCommandHandler
 {
     private readonly IConsoleWriter _console;
     private readonly IPackageSourceFilePathValidator _packageSourceFilePathValidator;
+    private readonly IFileProvider _fileProvider;
+    private readonly IPackageDependencyParsingService _packageDependencyParsingService;
 
-    public AnalyseCommandHandler (IConsoleWriter console, IPackageSourceFilePathValidator packageSourceFilePathValidator)
+    public AnalyseCommandHandler (
+        IConsoleWriter console,
+        IPackageSourceFilePathValidator packageSourceFilePathValidator,
+        IFileProvider fileProvider,
+        IPackageDependencyParsingService packageDependencyParsingService)
     {
         _console = console;
         _packageSourceFilePathValidator = packageSourceFilePathValidator;
+        _fileProvider = fileProvider;
+        _packageDependencyParsingService = packageDependencyParsingService;
     }
 
     /*
@@ -39,7 +48,27 @@ internal class AnalyseCommandHandler : IAnalyseCommandHandler
         // Is filePath a .sln file or a directory.packages.props file?
         // (valid filePath to directory.packages.props) C:\Source\GitHub\nonsowd\PackageDependencyManagementReportingTool\Src\Directory.Packages.props
 
-        _packageSourceFilePathValidator.Validate(filePath);
+        var result = _packageSourceFilePathValidator.Validate(filePath);
+
+        // check for validation error with IPackageSourceFilePathValidator
+        if (result.IsValid == false) 
+        {
+            // Write error to screen
+            foreach (var item in result.Errors)
+            {
+                _console.WriteLine(item.ErrorMessage);
+            }
+            return;
+        }
+
+        //var lines = _fileProvider.ReadAllLinesAsync(filePath);
+        // TODO: cascade Async CancellationToken
+        var packages = _packageDependencyParsingService.ReadNugetPackageInfo([], CancellationToken.None);
+
+        //var outputJson = JsonSerializer.Serialize(packages);
+
+        //_fileProvider.WriteAllLinesAsync(outputFilePath);
+
         throw new NotImplementedException();
     }
 }
