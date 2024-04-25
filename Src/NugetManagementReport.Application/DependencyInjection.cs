@@ -10,7 +10,8 @@ public static partial class DependencyInjectionExtensions
         services.AddTransient<IAnalyseCommandHandler, AnalyseCommandHandler>();
         services.AddTransient<IPrintReportCommandHandler, PrintReportCommandHandler>();
         services.AddTransient<IProjectPlanCommandHandler, ProjectPlanCommandHandler>();
-  
+        services.AddTransient<IPackageDependencyParsingService, PackageDependencyParsingService>();
+
         return services;
     }
 }

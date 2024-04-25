@@ -69,6 +69,5 @@ internal class AnalyseCommandHandler : IAnalyseCommandHandler
 
         //_fileProvider.WriteAllLinesAsync(outputFilePath);
 
-        throw new NotImplementedException();
     }
 }

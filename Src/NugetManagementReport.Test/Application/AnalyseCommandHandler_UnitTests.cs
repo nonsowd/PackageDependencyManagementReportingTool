@@ -19,8 +19,8 @@ public class AnalyseCommandHandler_Handle
         var mockFileProvider = new Mock<IFileProvider>();
         var mockPackageDependencyParsingService = new Mock<IPackageDependencyParsingService>();
 
-        //var validationResult = new ValidationResult();
-        //mockPackageSourceFilePathValidator.Setup(x => x.Validate(filePath)).Returns(validationResult);
+        var validationResult = new ValidationResult();
+        mockPackageSourceFilePathValidator.Setup(x => x.Validate(filePath)).Returns(validationResult);
 
         //mockPackageSourceFilePathValidator.Setup(x => x.(filePath)).Returns(validationResult);
 
