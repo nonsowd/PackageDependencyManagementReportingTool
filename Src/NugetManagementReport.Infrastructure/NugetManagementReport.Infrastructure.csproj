@@ -1,13 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-	
-	<ItemGroup>
-		<ProjectReference Include="..\NugetManagementReport.Abstractions\NugetManagementReport.Abstractions.csproj" />
-	</ItemGroup>
-	
+    <ItemGroup>
+        <None Include="..\.editorconfig" Link=".editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="PDFsharp" />
+        <PackageReference Include="QuestPDF" />
+    </ItemGroup>
+    
 </Project>

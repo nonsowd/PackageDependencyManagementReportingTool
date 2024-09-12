@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <None Include="..\.editorconfig" Link=".editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\NugetManagementReport.Domain\NugetManagementReport.Domain.csproj" />
+        <ProjectReference Include="..\NugetManagementReport.Infrastructure\NugetManagementReport.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Product>Package Dependency Management Reporting Tool</Product>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally><!--See: https://devblogs.microsoft.com/nuget/introducing-central-package-management/-->
+        <NoWarn>$(NoWarn);</NoWarn><!--https://github.com/dotnet/aspnetcore/issues/50836-->
+    </PropertyGroup>
+</Project>
